@@ -4,7 +4,11 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.core.view.GravityCompat
+import androidx.fragment.app.Fragment
 import com.example.wikipedia.databinding.ActivityMainBinding
+import com.example.wikipedia.fragment.FragmentExplorer
+import com.example.wikipedia.fragment.FragmentProfile
+import com.example.wikipedia.fragment.FragmentTrend
 
 class MainActivity : AppCompatActivity() {
     lateinit var binding: ActivityMainBinding
@@ -57,5 +61,33 @@ class MainActivity : AppCompatActivity() {
 
             true
         }
+        firstRun()
+        binding.bottomNavigationMain.setOnItemSelectedListener {
+            when(it.itemId) {
+                R.id.menu_expelorer ->{
+                    replaceFragment(FragmentExplorer())
+                }
+                R.id.menu_trend ->{
+                    replaceFragment(FragmentTrend())
+                }
+                R.id.menu_profile ->{
+                    replaceFragment(FragmentProfile())
+                }
+
+            }
+            true
+        }
+        binding.bottomNavigationMain.setOnItemReselectedListener {  }
+    }
+
+    fun replaceFragment(fragment : Fragment){
+        val transaction = supportFragmentManager.beginTransaction()
+        transaction.replace(R.id.frame_main_container ,fragment)
+        transaction.addToBackStack(null)
+        transaction.commit()
+    }
+    fun firstRun(){
+        replaceFragment(FragmentExplorer())
+        binding.bottomNavigationMain.selectedItemId = R.id.menu_expelorer
     }
 }
