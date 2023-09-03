@@ -3,5 +3,6 @@
 
     <string name="openDrawer">open drawer</string>
     <string name="closeDrawer">close drawer</string>
+    <string name="textview">TextView</string>
 
 </resources>
