@@ -20,7 +20,6 @@ class TrendAdapter(val data: List<ItemPost>) :
             Glide
                 .with(itemView.context)
                 .load(itemPost.imgUrl)
-                .transform(RoundedCorners(10))
                 .into(binding.imgTrendMain)
             binding.txtTrendTitle.text = itemPost.txtTitle
             binding.txtTrendSubtitle.text = itemPost.txtSubtitle
