@@ -1,5 +1,6 @@
 package com.example.wikipedia.data
 
+
 import android.os.Parcelable
 import kotlinx.parcelize.Parcelize
 
@@ -13,4 +14,3 @@ data class ItemPost(
      val idTrend: Boolean,
      val insight: String
 ) :Parcelable
-

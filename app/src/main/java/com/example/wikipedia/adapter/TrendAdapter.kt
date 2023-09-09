@@ -11,7 +11,7 @@ import com.example.wikipedia.data.ItemPost
 import com.example.wikipedia.databinding.ItemExplorerBinding
 import com.example.wikipedia.databinding.ItemTrendBinding
 
-class TrendAdapter(val data: List<ItemPost>) :
+class TrendAdapter(val data: List<ItemPost>,  val itemEvents: itemEvents) :
     RecyclerView.Adapter<TrendAdapter.TrendViewHolder>() {
     lateinit var binding: ItemTrendBinding
 
@@ -25,6 +25,11 @@ class TrendAdapter(val data: List<ItemPost>) :
             binding.txtTrendSubtitle.text = itemPost.txtSubtitle
             binding.txtTrendInsight.text = itemPost.insight
             binding.txtTrendNumber.text = (adapterPosition + 1).toString()
+
+
+            itemView.setOnClickListener {
+                itemEvents.onItemClicked(itemPost)
+            }
 
         }
     }
