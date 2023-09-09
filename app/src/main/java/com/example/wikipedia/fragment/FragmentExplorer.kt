@@ -1,17 +1,22 @@
 package com.example.wikipedia.fragment
 
+import android.content.Intent
 import android.os.Bundle
+import android.provider.Telephony.Mms.Intents
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.wikipedia.MainActivity
 import com.example.wikipedia.adapter.ExplorerAdapter
+import com.example.wikipedia.adapter.itemEvents
 import com.example.wikipedia.data.ItemPost
 import com.example.wikipedia.databinding.FragmentExplorerBinding
 
-class FragmentExplorer : Fragment() {
+const val SEND_DATA_TO_SECOND_ACTIVITY = "sendData"
+class FragmentExplorer : Fragment(),itemEvents {
     lateinit var binding: FragmentExplorerBinding
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -116,11 +121,17 @@ class FragmentExplorer : Fragment() {
 
         )
 
-        val myAdapter = ExplorerAdapter(dataExplore)
+        val myAdapter = ExplorerAdapter(dataExplore, this)
         binding.recyclerExplore.layoutManager =
             LinearLayoutManager(context, RecyclerView.VERTICAL, false)
         binding.recyclerExplore.adapter = myAdapter
 
+    }
+
+    override fun onItemClicked(itemPost: ItemPost) {
+        val intent = Intent(activity,MainActivity::class.java)
+        intent.putExtra(SEND_DATA_TO_SECOND_ACTIVITY, itemPost.txtTitle)
+        startActivity(intent)
     }
 
 }
