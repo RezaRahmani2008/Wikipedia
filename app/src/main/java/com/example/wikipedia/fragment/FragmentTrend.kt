@@ -8,12 +8,11 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.wikipedia.MainActivity
+import com.example.wikipedia.MainActivity2
 import com.example.wikipedia.adapter.TrendAdapter
 import com.example.wikipedia.adapter.itemEvents
 import com.example.wikipedia.data.ItemPost
 import com.example.wikipedia.databinding.FragmentTrendBinding
-const val SEND_DATA_TO_SECOND_ACTIVITY = "sendData"
 
 class FragmentTrend : Fragment() ,itemEvents{
     lateinit var binding: FragmentTrendBinding
@@ -168,8 +167,8 @@ class FragmentTrend : Fragment() ,itemEvents{
         binding.recyclerTrend.adapter = myAdapter
     }
     override fun onItemClicked(itemPost: ItemPost) {
-        val intent = Intent(activity, MainActivity::class.java)
-        intent.putExtra(SEND_DATA_TO_SECOND_ACTIVITY, itemPost.txtTitle)
+        val intent = Intent(activity, MainActivity2::class.java)
+        intent.putExtra(SEND_DATA_TO_SECOND_ACTIVITY, itemPost)
         startActivity(intent)
     }
 
