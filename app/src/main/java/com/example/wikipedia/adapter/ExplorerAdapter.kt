@@ -11,7 +11,6 @@ import com.example.wikipedia.databinding.ItemExplorerBinding
 class ExplorerAdapter( val data: List<ItemPost>, val itemEvents: itemEvents) :
     RecyclerView.Adapter<ExplorerAdapter.ExplorerViewHolder>() {
     lateinit var binding: ItemExplorerBinding
-
     inner class ExplorerViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         fun bindViews(itemPost: ItemPost) {
             Glide
@@ -27,7 +26,6 @@ class ExplorerAdapter( val data: List<ItemPost>, val itemEvents: itemEvents) :
             }
         }
     }
-
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ExplorerViewHolder {
         binding = ItemExplorerBinding.inflate(
             LayoutInflater.from(parent.context),
@@ -36,11 +34,9 @@ class ExplorerAdapter( val data: List<ItemPost>, val itemEvents: itemEvents) :
         )
         return ExplorerViewHolder(binding.root)
     }
-
     override fun onBindViewHolder(holder: ExplorerViewHolder, position: Int) {
         holder.bindViews(data[position])
     }
-
     override fun getItemCount(): Int {
         return data.size
     }

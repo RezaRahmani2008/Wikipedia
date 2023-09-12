@@ -28,38 +28,29 @@ class MainActivity2 : AppCompatActivity() {
         )
         supportActionBar!!.setHomeButtonEnabled(true)
         supportActionBar!!.setDisplayHomeAsUpEnabled(true)
-
-
         val dataPost = intent.getParcelableExtra<ItemPost>(SEND_DATA_TO_SECOND_ACTIVITY)
-        Log.v("test",dataPost.toString())
+        Log.v("test", dataPost.toString())
 
         if (dataPost != null) {
             showData(dataPost)
         }
-
-
     }
 
     private fun showData(itemPost: ItemPost) {
-
         Glide
             .with(this)
-            .load( itemPost.imgUrl )
-            .into( binding.imgDetail )
-
+            .load(itemPost.imgUrl)
+            .into(binding.imgDetail)
         binding.txtDetailTitle.text = itemPost.txtTitle
         binding.txtDetailSubtitle.text = itemPost.txtSubtitle
         binding.txtDetailText.text = itemPost.txtDetail
 
         binding.fabDetailOpenWikipedia.setOnClickListener {
-
             // open wikipedia
             val url = "https://en.wikipedia.org/wiki/Main_Page"
-            val intent = Intent( Intent.ACTION_VIEW , Uri.parse(url) )
+            val intent = Intent(Intent.ACTION_VIEW, Uri.parse(url))
             startActivity(intent)
-
         }
-
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
@@ -68,5 +59,4 @@ class MainActivity2 : AppCompatActivity() {
         }
         return true
     }
-
 }

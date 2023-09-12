@@ -14,21 +14,21 @@ import com.example.wikipedia.adapter.itemEvents
 import com.example.wikipedia.data.ItemPost
 import com.example.wikipedia.databinding.FragmentTrendBinding
 
-class FragmentTrend : Fragment() ,itemEvents{
+class FragmentTrend : Fragment(), itemEvents {
     lateinit var binding: FragmentTrendBinding
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding = FragmentTrendBinding.inflate(layoutInflater ,container ,false)
+        binding = FragmentTrendBinding.inflate(layoutInflater, container, false)
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val dataTrend = arrayListOf<ItemPost> (
+        val dataTrend = arrayListOf<ItemPost>(
 
 
             // Trend Section =>
@@ -158,18 +158,16 @@ class FragmentTrend : Fragment() ,itemEvents{
                 true,
                 "+372 K"
             )
-
         )
-
         val myAdapter = TrendAdapter(dataTrend, this)
         binding.recyclerTrend.layoutManager =
             LinearLayoutManager(context, RecyclerView.VERTICAL, false)
         binding.recyclerTrend.adapter = myAdapter
     }
+
     override fun onItemClicked(itemPost: ItemPost) {
         val intent = Intent(activity, MainActivity2::class.java)
         intent.putExtra(SEND_DATA_TO_SECOND_ACTIVITY, itemPost)
         startActivity(intent)
     }
-
 }

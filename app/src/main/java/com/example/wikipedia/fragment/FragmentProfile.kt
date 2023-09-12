@@ -12,7 +12,6 @@ import com.bumptech.glide.Glide
 import com.example.wikipedia.R
 import com.example.wikipedia.databinding.FragmentProfileBinding
 
-
 class FragmentProfile : Fragment() {
     lateinit var binding: FragmentProfileBinding
     private val PICK_IMAGE_REQUEST = 1
@@ -26,6 +25,7 @@ class FragmentProfile : Fragment() {
         setView()
         return binding.root
     }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         openEditProfile()
@@ -37,12 +37,14 @@ class FragmentProfile : Fragment() {
             openGallery()
         }
     }
+
     private fun openGallery() {
         val intent = Intent(Intent.ACTION_GET_CONTENT).apply {
             type = "image/*"
         }
         startActivityForResult(intent, PICK_IMAGE_REQUEST)
     }
+
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
 
@@ -56,48 +58,46 @@ class FragmentProfile : Fragment() {
             .load(imageUri)
             .into(binding.imgProfileMain)
     }
-    private fun openEditProfile(){
 
+    private fun openEditProfile() {
         binding.txtProfileUsername.setOnClickListener {
             val transaction = parentFragmentManager.beginTransaction()
-            transaction.replace(R.id.frame_main_container,  FragmentEdtProfile())
+            transaction.replace(R.id.frame_main_container, FragmentEdtProfile())
             transaction.addToBackStack(null)
             transaction.commit()
         }
         binding.txtProfileEmail.setOnClickListener {
             val transaction = parentFragmentManager.beginTransaction()
-            transaction.replace(R.id.frame_main_container,  FragmentEdtProfile())
+            transaction.replace(R.id.frame_main_container, FragmentEdtProfile())
             transaction.addToBackStack(null)
             transaction.commit()
         }
         binding.txtProfileGender.setOnClickListener {
             val transaction = parentFragmentManager.beginTransaction()
-            transaction.replace(R.id.frame_main_container,  FragmentEdtProfile())
+            transaction.replace(R.id.frame_main_container, FragmentEdtProfile())
             transaction.addToBackStack(null)
             transaction.commit()
         }
         binding.txtProfileDateOfBirth.setOnClickListener {
             val transaction = parentFragmentManager.beginTransaction()
-            transaction.replace(R.id.frame_main_container,  FragmentEdtProfile())
+            transaction.replace(R.id.frame_main_container, FragmentEdtProfile())
             transaction.addToBackStack(null)
             transaction.commit()
         }
     }
-    private fun setView(){
+
+    private fun setView() {
         val bundle = arguments
         if (bundle != null) {
-            val username = bundle.getString(KEY_SEND_DATA_USERNAME)
-            val email = bundle.getString(KEY_SEND_DATA_EMAIL)
-            val gender = bundle.getString(KEY_SEND_DATA_GENDER)
-            val age = bundle.getString(KEY_SEND_DATA_AGE)
+            val username = bundle.getString(KEY_SET_DATA_USERNAME)
+            val email = bundle.getString(KEY_SET_DATA_EMAIL)
+            val gender = bundle.getString(KEY_SET_DATA_GENDER)
+            val age = bundle.getString(KEY_SET_DATA_AGE)
             binding.txtProfileUsername.text = username
             binding.txtProfileEmail.text = email
             binding.txtProfileGender.text = gender
             binding.txtProfileDateOfBirth.text = age
-        }else{
-
+        } else {
         }
-
     }
-
 }

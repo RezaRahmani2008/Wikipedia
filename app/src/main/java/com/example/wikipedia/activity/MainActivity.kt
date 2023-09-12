@@ -38,15 +38,11 @@ class MainActivity : AppCompatActivity() {
         )
         binding.drawerLayoutMain.addDrawerListener(actionBarDrawerToggle)
         actionBarDrawerToggle.syncState()
-
         binding.navigationViewMain.setNavigationItemSelectedListener {
-
             when (it.itemId) {
-
                 R.id.menu_writer -> {
                     binding.drawerLayoutMain.closeDrawer(GravityCompat.START)
-
-                    val dialog = SweetAlertDialog(this, SweetAlertDialog.SUCCESS_TYPE)
+                    val dialog = SweetAlertDialog(this, SweetAlertDialog.NORMAL_TYPE)
                     dialog.titleText = "Alert!"
                     dialog.confirmText = "Confirm"
                     dialog.cancelText = "Cancel"
@@ -60,29 +56,22 @@ class MainActivity : AppCompatActivity() {
                             .show()
                     }
                     dialog.show()
-
-
                 }
 
                 R.id.menu_photograph -> {
-
                     // load fragment =>
                     val transaction = supportFragmentManager.beginTransaction()
-                    transaction.add(R.id.frame_main_container, FragmentPhotographer())
+                    transaction.replace(R.id.frame_main_container, FragmentPhotographer())
                     transaction.addToBackStack(null)
                     transaction.commit()
-
                     // check menu item =>
                     binding.navigationViewMain.menu.getItem(1).isChecked = true
-
                     // close drawer =>
                     binding.drawerLayoutMain.closeDrawer(GravityCompat.START)
-
                 }
 
                 R.id.menu_vieo_maker -> {
                     binding.drawerLayoutMain.closeDrawer(GravityCompat.START)
-
                     Snackbar
                         .make(binding.root, "No Internet!", Snackbar.LENGTH_LONG)
                         .setAction("Retry") {
@@ -91,43 +80,29 @@ class MainActivity : AppCompatActivity() {
                         .setActionTextColor(ContextCompat.getColor(this, R.color.white))
                         .setBackgroundTint(ContextCompat.getColor(this, R.color.blue))
                         .show()
-
                 }
 
                 R.id.menu_translator -> {
                     binding.drawerLayoutMain.closeDrawer(GravityCompat.START)
-
                     // open an activity =>
                     val intent = Intent(this, MainActivity3::class.java)
                     startActivity(intent)
-
                 }
-
-                // ---------------------------------
 
                 R.id.menu_open_wikipedia -> {
                     binding.drawerLayoutMain.closeDrawer(GravityCompat.START)
-
                     openWebsite("https://www.wikipedia.org/")
-
                 }
 
                 R.id.menu_open_wikimedia -> {
                     binding.drawerLayoutMain.closeDrawer(GravityCompat.START)
-
                     openWebsite("https://www.wikimedia.org/")
-
                 }
-
             }
-
             true
         }
-
         firstRun()
-
         binding.bottomNavigationMain.setOnItemSelectedListener {
-
             when (it.itemId) {
                 R.id.menu_explore -> {
                     replaceFragment(FragmentExplorer())
@@ -141,56 +116,47 @@ class MainActivity : AppCompatActivity() {
                     replaceFragment(FragmentProfile())
                 }
             }
-
             // check menu item off =>
             binding.navigationViewMain.menu.getItem(1).isChecked = false
-
             true
         }
         binding.bottomNavigationMain.setOnItemReselectedListener {}
-
-
     }
 
     private fun openWebsite(url: String) {
-
         val intent = Intent(Intent.ACTION_VIEW, Uri.parse(url))
         startActivity(intent)
-
     }
-    private fun replaceFragment(fragment: Fragment) {
 
+    private fun replaceFragment(fragment: Fragment) {
         val transaction = supportFragmentManager.beginTransaction()
         transaction.replace(R.id.frame_main_container, fragment)
         transaction.commit()
 
     }
-    private fun firstRun() {
 
+    private fun firstRun() {
         replaceFragment(FragmentExplorer())
         binding.bottomNavigationMain.selectedItemId = R.id.menu_explore
-
     }
+
     override fun onBackPressed() {
         super.onBackPressed()
-
         // check menu item off =>
         binding.navigationViewMain.menu.getItem(1).isChecked = false
-
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        menuInflater.inflate( R.menu.menu_main , menu )
+        menuInflater.inflate(R.menu.menu_main, menu)
         return true
     }
+
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        when(item.itemId) {
+        when (item.itemId) {
             R.id.menu_exit -> {
                 onBackPressed()
             }
         }
         return true
     }
-
-
 }

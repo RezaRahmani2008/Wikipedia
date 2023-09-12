@@ -15,7 +15,8 @@ import com.example.wikipedia.data.ItemPost
 import com.example.wikipedia.databinding.FragmentExplorerBinding
 
 const val SEND_DATA_TO_SECOND_ACTIVITY = "sendData"
-class FragmentExplorer : Fragment(),itemEvents {
+
+class FragmentExplorer : Fragment(), itemEvents {
     lateinit var binding: FragmentExplorerBinding
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -124,7 +125,6 @@ class FragmentExplorer : Fragment(),itemEvents {
         binding.recyclerExplore.layoutManager =
             LinearLayoutManager(context, RecyclerView.VERTICAL, false)
         binding.recyclerExplore.adapter = myAdapter
-
     }
 
     override fun onItemClicked(itemPost: ItemPost) {
@@ -132,5 +132,4 @@ class FragmentExplorer : Fragment(),itemEvents {
         intent.putExtra(SEND_DATA_TO_SECOND_ACTIVITY, itemPost)
         startActivity(intent)
     }
-
 }

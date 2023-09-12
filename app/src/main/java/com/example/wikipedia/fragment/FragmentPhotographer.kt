@@ -5,13 +5,12 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.example.wikipedia.databinding.ActivityMainBinding
+import com.bumptech.glide.Glide
+import com.example.wikipedia.R
 import com.example.wikipedia.databinding.FragmentPhotographerBinding
-
 
 class FragmentPhotographer : Fragment() {
     lateinit var binding: FragmentPhotographerBinding
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -22,6 +21,9 @@ class FragmentPhotographer : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        Glide
+            .with(requireContext())
+            .load(R.drawable.img_photographer)
+            .into(binding.imageView2)
     }
-
 }
