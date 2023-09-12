@@ -1,4 +1,4 @@
-package com.example.wikipedia
+package com.example.wikipedia.activity
 
 import android.content.Intent
 import android.net.Uri

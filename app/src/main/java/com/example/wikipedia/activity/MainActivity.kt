@@ -1,10 +1,11 @@
-package com.example.wikipedia
+package com.example.wikipedia.activity
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.core.view.GravityCompat
 import androidx.fragment.app.Fragment
+import com.example.wikipedia.R
 import com.example.wikipedia.databinding.ActivityMainBinding
 import com.example.wikipedia.fragment.FragmentExplorer
 import com.example.wikipedia.fragment.FragmentProfile
@@ -21,7 +22,7 @@ class MainActivity : AppCompatActivity() {
             this ,
             binding.drawerLayoutMain ,
             binding.toolbarMain ,
-            R.string.openDrawer ,
+            R.string.openDrawer,
             R.string.closeDrawer
         )
         binding.drawerLayoutMain.addDrawerListener( actionBarDrawerToggle )
@@ -83,7 +84,7 @@ class MainActivity : AppCompatActivity() {
 
     private fun replaceFragment(fragment : Fragment){
         val transaction = supportFragmentManager.beginTransaction()
-        transaction.replace(R.id.frame_main_container ,fragment)
+        transaction.replace(R.id.frame_main_container,fragment)
         transaction.addToBackStack(null)
         transaction.commit()
     }
